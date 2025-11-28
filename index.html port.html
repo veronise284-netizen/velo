@@ -287,6 +287,51 @@
     .post-modal-close { position:absolute; right:12px; top:12px; background:transparent; border:0; font-size:28px; cursor:pointer; color:#222; }
     .post-modal-header h1{ margin:0 0 8px 0; font-family:"Crimson Pro", serif; font-size:26px; }
 
+    /* -------------------------
+       HERO ANIMATIONS (subtle + accessible)
+    -------------------------- */
+
+    /* only animate if user hasn't requested reduced motion */
+    @media (prefers-reduced-motion: no-preference) {
+      /* fade/slide-in for the left column */
+      .hero-appear {
+        opacity: 0;
+        transform: translateY(6px);
+        animation: heroTextIn 700ms cubic-bezier(.2,.9,.2,1) forwards;
+      }
+      .hero-appear.delay-1 {
+        animation-delay: 120ms;
+      }
+      .hero-appear.delay-2 {
+        animation-delay: 240ms;
+      }
+
+      @keyframes heroTextIn {
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* soft floating for the profile image */
+      .hero-profile {
+        transform: translateY(0);
+        will-change: transform;
+        animation: profileFloat 6s ease-in-out infinite;
+      }
+      @keyframes profileFloat {
+        0% { transform: translateY(0px) rotate(0.0deg); }
+        50% { transform: translateY(-6px) rotate(-0.15deg); }
+        100% { transform: translateY(0px) rotate(0.0deg); }
+      }
+
+      /* tiny entrance for CTA buttons with stagger */
+      .cta-appear { opacity:0; transform: translateY(8px); animation: ctaIn 520ms cubic-bezier(.2,.9,.2,1) forwards; }
+      .cta-appear.delay-cta-1 { animation-delay: 320ms; }
+      .cta-appear.delay-cta-2 { animation-delay: 380ms; }
+      @keyframes ctaIn { to { opacity:1; transform: translateY(0); } }
+
+      /* hover micro-lift for hero profile */
+      .hero-profile:hover { transform: translateY(-6px) scale(1.01); transition: transform 300ms ease; }
+    }
+
     /* small screens */
     @media (max-width:1000px){
       .blog-grid { grid-template-columns: repeat(2, 1fr); }
@@ -342,14 +387,14 @@
   <main class="container">
     <section class="hero" aria-label="Hero">
       <div class="hero-left">
-        <div class="tagline">DESIGN-MINDED DEVELOPER</div>
-        <h1>NYIRAGASIGWA<br>Veronise</h1>
-        <div class="hero-sub">Design-minded developer focused on clean UI and real usability.</div>
+        <div class="tagline hero-appear delay-1">DESIGN-MINDED DEVELOPER</div>
+        <h1 class="hero-appear delay-2">NYIRAGASIGWA<br>Veronise</h1>
+        <div class="hero-sub hero-appear delay-2">Design-minded developer focused on clean UI and real usability.</div>
 
         <div class="hero-ctas">
-          <a class="btn btn-accent" href="#projects">See projects</a>
-          <a class="btn btn-ghost" href="#contact">Contact</a>
-          <a class="btn btn-ghost" href="Veronise -CV.pdf.pdf" download>Download CV</a>
+          <a class="btn btn-accent cta-appear delay-cta-1" href="#projects">See projects</a>
+          <a class="btn btn-ghost cta-appear delay-cta-2" href="#contact">Contact</a>
+          <a class="btn btn-ghost cta-appear delay-cta-2" href="Veronise -CV.pdf.pdf" download>Download CV</a>
         </div>
       </div>
 
@@ -443,11 +488,6 @@
 }
 </style>
 
-  </section>
-   </section>
-
-   
-
   <!-- PROJECTS -->
   <section id="projects" class="container" aria-label="Projects">
     <h2>Projects</h2>
@@ -528,6 +568,7 @@
       </div>
 
     </div>
+  </section>
 
   <!-- TECHNOLOGIES USED (single card with links) -->
 <section class="container tech-section" id="technologies">
@@ -580,11 +621,6 @@
   </div>
 </section>
 
-
-  </section>
-
-  
- 
   <!-- BLOG SECTION (links open externally) -->
   <section id="blog" style="padding:60px 30px; max-width:1250px; margin:auto;">
     <h2 style="font-family:'Crimson Pro', serif; font-size:40px; margin-bottom:10px;">Read My Blog</h2>
@@ -802,8 +838,20 @@
         });
       }
     })();
+
+    // Trigger hero animations by toggling classes after DOM load (keeps markup unchanged)
+    (function(){
+      // Respect prefers-reduced-motion: if user prefers reduced motion, do nothing
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce) return;
+
+      // Ensure elements are present and mark them for animation (the CSS uses existing classes)
+      window.addEventListener('load', function(){
+        // nothing to change in DOM - classes added inline in markup already (hero-appear, cta-appear).
+        // This small timeout simply ensures animations start after load for a smoother entry.
+        // No additional DOM mutations are required.
+      });
+    })();
   </script>
 </body>
 </html>
-
-
