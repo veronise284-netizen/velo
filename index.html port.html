@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="NYIRAGASIGWA Veronise — Front-end developer portfolio showcasing projects, skills, and downloadable CV." />
+  <title>NYIRAGASIGWA Veronise — Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------
+       GLOBAL DESIGN THEME
+    -------------------------- */
+    :root{
+      --text: #ffffff;
+      --muted: #c7c7c7;
+      --accent-a: #ff7b7b;
+      --accent-b: #ff5592;
+      --bg-dark: rgba(0,0,0,0.75);
+      --radius: 18px;
+      --container: 1250px;
+      --card-bg: rgba(18,18,20,0.45);
+      --glass-border: rgba(255,255,255,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body {
+      margin:0;
+      font-family:"Work Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:var(--text);
+      background-color:#000;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* FULL-PAGE BACKGROUND */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-5;
+      background-image:
+        linear-gradient(180deg, rgba(3,6,12,0.6), rgba(3,6,12,0.75)),
+        url("background.png");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+      filter:contrast(1.02) saturate(1.05);
+    }
+
+    /* BASE LAYOUT */
+    .container{max-width:var(--container);margin:0 auto;padding:0 24px}
+    section{padding:64px 0}
+
+    h1,h2,h3{font-family:"Crimson Pro", serif;margin:0;color:var(--text)}
+    h1{font-size:clamp(34px,6vw,68px);line-height:1}
+    h2{font-size:28px}
+    p{margin:0;color:rgba(255,255,255,0.92)}
+
+    .card{
+      background:var(--card-bg);
+      padding:26px;
+      border-radius:var(--radius);
+      margin-bottom:22px;
+      border:1px solid var(--glass-border);
+      box-shadow:0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    /* TOP NAV with mobile menu */
+    nav{
+      position:fixed;
+      top:0;left:0;right:0;
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 28px;
+      z-index:60;
+      background:linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35));
+      border-bottom:1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(6px);
+    }
+    nav .logo{font-weight:700}
+    nav .nav-links{display:flex;gap:20px;align-items:center}
+    nav a{color:#fff;text-decoration:none;font-weight:600}
+    nav a:hover{color:var(--accent-a)}
+
+    /* mobile menu button */
+    .menu-toggle{
+      display:none;
+      background:transparent;
+      border:0;
+      color:#fff;
+      font-size:22px;
+      cursor:pointer;
+      padding:8px;
+      border-radius:8px;
+    }
+
+    /* HERO */
+    .hero{
+      margin-top:84px;
+      padding:56px 0;
+      display:flex;
+      align-items:center;
+      gap:36px;
+      min-height:68vh;
+    }
+    .hero-left{flex:1;max-width:760px}
+    .tagline{font-size:12px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+    .hero-sub{font-size:20px;color:rgba(255,255,255,0.95);margin-top:12px}
+    .hero-ctas{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 20px;
+      border-radius:14px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      color:#fff;
+      border:none;
+    }
+    .btn-accent{
+      background:linear-gradient(90deg,var(--accent-a),var(--accent-b));
+      box-shadow:0 12px 40px rgba(255,90,120,0.12);
+    }
+    .btn-ghost{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);
+      color:#fff;
+    }
+
+    /* HERO PROFILE */
+    .hero-profile{
+      width:420px;
+      height:520px;
+      flex-shrink:0;
+      border-radius:18px;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,0.06);
+      transform:translateY(0);
+      box-shadow:0 30px 80px rgba(0,0,0,0.6);
+    }
+    .hero-profile img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* ABOUT (single card with profile on left) */
+    .about-one-card {
+      margin-top: 20px;
+      padding: 28px;
+      background: rgba(18,18,20,0.45);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+      border-radius: 18px;
+
+      display: flex;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .about-photo {
+      width: 320px;
+      max-width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    }
+    .about-photo img { width:100%; height:100%; object-fit:cover; display:block }
+    .about-info { flex:1; color: rgba(255,255,255,0.95); font-size:18px; line-height:1.7; }
+
+    /* SKILLS: 3 horizontal cards */
+    .skills-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 16px;
+    }
+    .skill-card{
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(18,18,20,0.45);
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .skill-card h3 {
+      margin-top: 0;
+      font-size: 20px;
+      font-weight: 700;
+      font-family: "Crimson Pro", serif;
+      margin-bottom: 10px;
+    }
+
+    /* TECHNOLOGIES ONE-CARD + grid inside */
+    .tech-card {
+      background: rgba(18,18,20,0.45);
+      border-radius: 18px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+      margin-top: 20px;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 20px;
+    }
+    .tech-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(18,18,20,0.45);
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+    }
+    .tech-item svg { width: 28px; height: 28px; fill: #ffffff; }
+    .tech-item span { font-size: 17px; color: rgba(255,255,255,0.95); }
+
+    /* 3-column layout for Education + Experience + Driving License */
+    .edu-exp-3col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 0.6fr; /* left | center | right */
+      gap: 32px;
+      margin-top: 40px;
+      align-items: start;
+    }
+    .edu-exp-3col h2 { margin-bottom: 12px; }
+    .edu-card, .exp-card, .license-card {
+      background: rgba(18,18,20,0.45);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+    }
+
+    /* PROJECTS grid */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:14px}
+    .project{border-radius:14px;overflow:hidden;background:rgba(18,18,20,0.45);border:1px solid var(--glass-border);transition:transform .28s,box-shadow .28s}
+    .project img{width:100%;height:160px;object-fit:cover;display:block}
+    .project .p{padding:14px}
+    .project:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(0,0,0,0.6)}
+
+    /* BLOG grid (kept simple) */
+    .blog-grid {
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:28px;
+      align-items:start;
+      margin-top:16px;
+    }
+
+    /* CONTACT */
+    .contact-grid{display:flex;gap:28px;align-items:flex-start;width:100%;max-width:1200px;margin:0 auto}
+    .contact-left{flex:1 1 60%}
+    .contact-right{flex:0 0 360px;max-width:360px}
+    .contact-input,.contact-textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff;margin-top:8px}
+    .contact-actions{display:flex;gap:12px;align-items:center;margin-top:8px}
+
+    /* FOOTER */
+    footer{padding:40px 0;text-align:center;color:var(--muted)}
+
+    /* Modal styles for blog (scoped) */
+    .post-modal { position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center; }
+    .post-modal[aria-hidden="false"]{ display:flex; }
+    .post-modal-backdrop{ position:absolute; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(3px); }
+    .post-modal-panel {
+      position:relative;
+      max-width:900px;
+      width:calc(100% - 48px);
+      max-height:90vh;
+      overflow:auto;
+      background:#fff;
+      color:#111;
+      border-radius:12px;
+      padding:28px;
+      box-shadow:0 40px 120px rgba(2,6,23,0.6);
+    }
+    .post-modal-close { position:absolute; right:12px; top:12px; background:transparent; border:0; font-size:28px; cursor:pointer; color:#222; }
+    .post-modal-header h1{ margin:0 0 8px 0; font-family:"Crimson Pro", serif; font-size:26px; }
+
+    /* small screens */
+    @media (max-width:1000px){
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero{flex-direction:column;align-items:flex-start;gap:20px}
+      .hero-profile{width:320px;height:380px;align-self:center}
+      .edu-exp-3col{grid-template-columns:1fr}
+      .contact-grid{flex-direction:column}
+      .about-one-card{flex-direction:column; text-align:center}
+      .about-photo{width:260px; margin: 0 auto;}
+      nav{padding:0 18px}
+      .hero-left{max-width:100%}
+    }
+
+    @media (max-width:640px){
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-card { min-height:auto; }
+      .blog-card .thumb { height:180px; }
+      .hero-profile{width:260px;height:300px}
+      h1{font-size:34px}
+      .hero-sub{font-size:16px}
+      .skills-grid{grid-template-columns:1fr}
+    }
+
+    /* Nav responsive rules */
+    @media (max-width:900px) {
+      .nav-links { position:fixed; top:72px; right:0; width:260px; height:calc(100% - 72px); background:linear-gradient(180deg, rgba(0,0,0,0.9), rgba(0,0,0,0.85)); backdrop-filter: blur(6px); transform:translateX(100%); transition:transform .28s ease; flex-direction:column; padding:20px; gap:18px; }
+      .nav-links.open { transform:translateX(0); }
+      .menu-toggle { display:inline-flex; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav aria-label="Primary">
+    <div class="logo">NYIRAGASIGWA Veronise</div>
+
+    <button class="menu-toggle" aria-expanded="false" aria-controls="primary-nav" title="Open menu">
+      ☰
+    </button>
+
+    <div id="primary-nav" class="nav-links" role="navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#education-experience">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <main class="container">
+    <section class="hero" aria-label="Hero">
+      <div class="hero-left">
+        <div class="tagline">DESIGN-MINDED DEVELOPER</div>
+        <h1>NYIRAGASIGWA<br>Veronise</h1>
+        <div class="hero-sub">Design-minded developer focused on clean UI and real usability.</div>
+
+        <div class="hero-ctas">
+          <a class="btn btn-accent" href="#projects">See projects</a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
+          <a class="btn btn-ghost" href="Veronise -CV.pdf.pdf" download>Download CV</a>
+        </div>
+      </div>
+
+      <div class="hero-profile" aria-hidden="false">
+        <img src="my profile.jpg.png" alt="Portrait photo of Veronise" loading="lazy">
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== ABOUT (Single Card with Profile on Left) ===== -->
+  <section id="about" class="container" aria-label="About Me">
+    <h2>About Me</h2>
+
+    <div class="about-one-card">
+      <!-- LEFT: profile image -->
+      <div class="about-photo">
+        <img src="profile2.jpg.png" alt="Veronise profile">
+      </div>
+
+      <!-- RIGHT: about text -->
+      <div class="about-info">
+        <p>
+          I’m a front-end developer who enjoys solving problems through design, code, and clear thinking. I care about usability, clean structure, and creating interfaces that feel simple and pleasant to use. My experience combines technical skills in HTML, CSS, and UI design with a practical background in project management, research, client engagement, and digital operations. I enjoy turning ideas into responsive layouts, thoughtful visuals, and user-friendly experiences that make sense for real people.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="container" aria-label="Skills">
+    <h2>Skills</h2>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Web Design</h3>
+        <p>Creating visually appealing and modern web layouts that blend creativity with usability. I enjoy working with color palettes, soft gradients, and structured layouts that highlight content clearly.</p>
+      </div>
+
+      <div class="skill-card">
+        <h3>UI/UX Design</h3>
+        <p>Designing digital interfaces that are visually appealing and easy to navigate. I focus on creating clear layouts and intuitive interactions based on user needs.</p>
+      </div>
+
+      <div class="skill-card">
+        <h3>User Research</h3>
+        <p>Gathering insights from real users to understand their needs, frustrations, and expectations. I use interviews, observation and feedback to guide design decisions.</p>
+      </div>
+    </div>
+  </section>
+   </section>
+
+   
+
+  <!-- PROJECTS -->
+  <section id="projects" class="container" aria-label="Projects">
+    <h2>Projects</h2>
+
+    <div class="projects-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:22px; margin-top:18px;">
+      <!-- Project 1: Portfolio Website -->
+      <div class="card" style="padding:0; overflow:hidden;">
+        <img src="project3.jpg.png" alt="Portfolio Website Project" style="width:100%; height:180px; object-fit:cover; display:block;">
+        <div style="padding:20px;">
+          <h3 style="margin-bottom:10px;">Personal Portfolio Website</h3>
+          <p>Built a responsive personal website using HTML and CSS. Designed in Figma and implemented sections like About Me, Projects, Skills, and a downloadable CV.</p>
+        </div>
+      </div>
+
+      <!-- Project 2: Green Fertilizer -->
+      <div class="card" style="padding:0; overflow:hidden;">
+        <img src="Project2.jpg.png" alt="Green Fertilizer Project" style="width:100%; height:180px; object-fit:cover; display:block;">
+        <div style="padding:20px;">
+          <h3 style="margin-bottom:10px;">Green Fertilizer Project</h3>
+          <p>Co-led an innovation that reduces post-harvest loss with eco-friendly fertilizer. Received national funding; supported farmers and trained youth in climate-smart practices.</p>
+        </div>
+      </div>
+
+      <!-- Project 3: Eco Artistry Creations -->
+      <div class="card" style="padding:0; overflow:hidden;">
+        <img src="project.jpg.png" alt="Eco Artistry Creations Project" style="width:100%; height:180px; object-fit:cover; display:block;">
+        <div style="padding:20px;">
+          <h3 style="margin-bottom:10px;">Eco Artistry Creations</h3>
+          <p>Transforms plastic, glass, and cardboard waste into handmade ornaments. Reduces pollution, improves hygiene, and creates local income opportunities in Nyagatovu.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION + EXPERIENCE + DRIVING LICENSE (3-COLUMN LAYOUT) -->
+  <section id="education-experience" class="container" aria-label="Education and Experience">
+    <div class="edu-exp-3col">
+
+      <!-- LEFT: EDUCATION -->
+      <div class="edu-card card">
+        <h2>My Education</h2>
+
+        <p><strong>LAW (LLB) — University of Kigali</strong><br>May 2024 – Present</p>
+
+        <p style="margin-top:14px"><strong>Diploma — Davis College Rwanda (2023)</strong></p>
+
+        <ul style="margin-top:12px; padding-left:20px; color: rgba(255,255,255,0.95);">
+          <li>Digital Literacy</li>
+          <li>Social Change</li>
+          <li>Environmental Sustainability</li>
+          <li>Business Operation</li>
+          <li>Business Communication</li>
+          <li>Project Management</li>
+          <li>Human Resource Management</li>
+        </ul>
+      </div>
+
+      <!-- CENTER: EXPERIENCE -->
+      <div class="exp-card card">
+        <h2>Experience</h2>
+
+        <p><strong>Call Center Agent — CCI Rwanda</strong><br><small>January 2025 – July 2025</small></p>
+
+        <p style="margin-top:12px"><strong>Digital Learning Intern — Prikkle Academy Rwanda</strong><br><small>June 2023 – November 2023</small></p>
+
+        <ul style="margin-top:10px; padding-left:20px;">
+          <li>Created and scheduled social content to grow course visibility</li>
+          <li>Researched and contacted prospective learners</li>
+          <li>Improved communication flow and user onboarding</li>
+        </ul>
+
+      </div>
+
+      <!-- RIGHT: DRIVING LICENSE -->
+      <div class="license-card card">
+        <h2>Driving License</h2>
+        <p><strong>Category B</strong></p>
+      </div>
+
+    </div>
+
+  <!-- TECHNOLOGIES USED (single card with 3-column grid inside) -->
+  <section class="container tech-section" id="technologies">
+    <h2>Technologies Used</h2>
+
+    <div class="tech-card">
+      <div class="tech-grid">
+        <!-- HTML -->
+        <div class="tech-item">
+          <svg viewBox="0 0 128 128" aria-hidden="true"><path d="M19 3l9 102 36 10 36-10 9-102H19zm69.4 26.3H39.6l1 11.4h46.7l-3.3 36.6-23.7 6.5-23.7-6.5-1.6-18.3h11.4l.8 9.2 13.1 3.5 13.1-3.5 1.5-17H36.2l-3-34.1h61.6l-1.4 16.2z"/></svg>
+          <span>HTML5</span>
+        </div>
+
+        <!-- CSS -->
+        <div class="tech-item">
+          <svg viewBox="0 0 128 128" aria-hidden="true"><path d="M19 3l9 102 36 10 36-10 9-102H19zm69.3 26.3H39.8l1 11.4H88l-3.2 36.5-23.8 6.6-23.8-6.6-1.3-15.2h11.4l.8 9.2 13 3.5 13.2-3.5 1.5-17H36.3L33 29h61.4l-6.1 69.7-30.2 8.8-30.3-8.8-.7-7.6h11.3l.4 4.3 19.4 5.2 19.4-5.2 4.5-51.3H36.5L33.3 29h58.8z"/></svg>
+          <span>CSS3</span>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="tech-item">
+          <svg viewBox="0 0 128 128" aria-hidden="true"><path d="M2 1v125h125V1H2zm67.1 104.3c0 13.8-8.1 20.1-19.9 20.1-10.7 0-17.3-5.6-20.6-12.3l10.9-6.6c2 4.4 3.8 8.1 8.1 8.1 4.1 0 6.7-1.6 6.7-7.8V57.7h14.8v47.6zm33 20.1c-12.3 0-20.3-5.8-24.1-13.6l10.9-6.3c2.6 4.3 5 8.4 10.7 8.4 4.5 0 7.4-2.2 7.4-5.3 0-3.7-2.9-5-8.1-7.2l-2.8-1.2c-8-3.4-13.3-7.7-13.3-16.8 0-8.4 6.4-14.8 16.4-14.8 7.1 0 12.2 2.5 15.9 9l-10 6.5c-2.2-3.9-4.6-5.4-8.1-5.4-3.7 0-6 2.3-6 5 0 3.5 2.3 4.9 7.5 7l2.8 1.2c9.5 4.1 14.9 8.2 14.9 17.5.1 10-7.8 15.4-18.8 15.4z"/></svg>
+          <span>JavaScript</span>
+        </div>
+
+        <!-- Google Fonts -->
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a9.99 9.99 0 00-9.95 9.24c-.04.39.27.76.67.76h6.61a.75.75 0 00.74-.63A4.5 4.5 0 0112 7.5c1.87 0 3.46 1.17 4.11 2.83a.75.75 0 00.7.47h6.61c.4 0 .71-.37.67-.76A10 10 0 0012 2z" fill="#fff"/></svg>
+          <span>Google Fonts</span>
+        </div>
+
+        <!-- Figma -->
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a3 3 0 100-6 3 3 0 000 6zm0 0a3 3 0 110 6 3 3 0 010-6zm0-12a3 3 0 000 6h3a3 3 0 100-6h-3zm0 12h3a3 3 0 110 6h-3a3 3 0 110-6zm-6-6a3 3 0 100 6h3a3 3 0 000-6H6z" fill="#fff"/></svg>
+          <span>Figma</span>
+        </div>
+
+        <!-- GitHub -->
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 00.5 12a11.5 11.5 0 008 11c.5.1.7-.2.7-.5v-2c-3.3.7-4-1.6-4-1.6-.4-1-.9-1.3-.9-1.3-.7-.5.1-.5.1-.5.8.1 1.3.8 1.3.8.7 1.3 1.9.9 2.3.7.1-.5.3-.9.6-1.1-2.7-.3-5.5-1.3-5.5-6a4.6 4.6 0 011.2-3.2 4.2 4.2 0 01.1-3.2s1-.3 3.3 1.2a11.4 11.4 0 016 0c2.3-1.6 3.3-1.2 3.3-1.2a4.2 4.2 0 01.1 3.2 4.6 4.6 0 011.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A11.5 11.5 0 0023.5 12 11.5 11.5 0 0012 .5z"/></svg>
+          <span>Git & GitHub</span>
+        </div>
+
+        <!-- Netlify -->
+        <div class="tech-item">
+          <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M128 0l128 128-128 128L0 128 128 0z" fill="#3ab7bf"/></svg>
+          <span>Netlify</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+ 
+  <!-- BLOG SECTION (links open externally) -->
+  <section id="blog" style="padding:60px 30px; max-width:1250px; margin:auto;">
+    <h2 style="font-family:'Crimson Pro', serif; font-size:40px; margin-bottom:10px;">Read My Blog</h2>
+
+    <div id="blogGrid" class="blog-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:28px; margin-top:25px;">
+      <!-- BLOG 1 -->
+      <a class="blog-card-link" href="https://www.figma.com/resource-library/portfolio-website-examples/?fuid=1572526105765990200" target="_blank" rel="noopener noreferrer" style="display:block; background: rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; text-decoration: none; color: white; transition: transform 0.2s ease, background 0.2s ease;">
+        <img src="blog1.png" alt="Portfolio website examples preview" style="width:100%; height:210px; object-fit:cover; border-radius:12px;" loading="lazy">
+        <p style="font-size:14px; color:#c7c7c7; margin-top:12px;">20 November, 2025</p>
+        <h3 style="margin-top:8px; font-size:18px; font-weight:600;">Example of portfolio websites</h3>
+        <p style="margin-top:6px; font-size:15px; opacity:0.85;">15 inspiring portfolio website examples + tips.</p>
+      </a>
+
+      <!-- BLOG 2 -->
+      <a class="blog-card-link" href="https://www.youtube.com/watch?v=jQ1sfKIl50E" target="_blank" rel="noopener noreferrer" style="display:block; background: rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; text-decoration: none; color: white; transition: transform 0.2s ease, background 0.2s ease;">
+        <img src="blog2.png.png" alt="Figma tutorial preview" style="width:100%; height:210px; object-fit:cover; border-radius:12px;" loading="lazy">
+        <p style="font-size:14px; color:#c7c7c7; margin-top:12px;">20 November, 2025</p>
+        <h3 style="margin-top:8px; font-size:18px; font-weight:600;">Figma tutorials for beginners</h3>
+        <p style="margin-top:6px; font-size:15px; opacity:0.85;">Figma Tutorial for Beginners.</p>
+      </a>
+
+      <!-- BLOG 3 -->
+      <a class="blog-card-link" href="https://www.youtube.com/watch?v=1ucLq6JTxac&t=55s" target="_blank" rel="noopener noreferrer" style="display:block; background: rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; text-decoration: none; color: white; transition: transform 0.2s ease, background 0.2s ease;">
+        <img src="blog3.png.png" alt="Prototyping in Figma preview" style="width:100%; height:210px; object-fit:cover; border-radius:12px;" loading="lazy">
+        <p style="font-size:14px; color:#c7c7c7; margin-top:12px;">20 November, 2025</p>
+        <h3 style="margin-top:8px; font-size:18px; font-weight:600;">Prototyping in Figma</h3>
+        <p style="margin-top:6px; font-size:15px; opacity:0.85;">Figma Prototype Tutorial for Beginners.</p>
+      </a>
+    </div>
+
+    <!-- Keep modal available for any internal previews (won't be used for external links) -->
+    <div id="postModal" class="post-modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+      <div class="post-modal-backdrop" data-close="true"></div>
+      <article class="post-modal-panel" role="document" aria-labelledby="postModalTitle">
+        <button class="post-modal-close" aria-label="Close post">&times;</button>
+        <header class="post-modal-header">
+          <h1 id="postModalTitle"></h1>
+          <div class="post-meta" id="postModalDate" style="color:#666;margin-bottom:12px;"></div>
+        </header>
+        <div id="postModalContent" class="post-modal-body" style="color:#222;line-height:1.6;"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container" aria-label="Contact">
+    <h2>Contact</h2>
+
+    <div class="contact-grid">
+      <!-- left: form -->
+      <div class="contact-left">
+        <div class="card">
+          <div style="margin-bottom:12px;color:var(--muted)">Have a project, question or idea? Send a message — I reply to genuine requests.</div>
+
+          <form id="contactForm" novalidate>
+            <label class="muted-small" for="c-name">Name</label>
+            <input id="c-name" name="name" type="text" placeholder="Your name" class="contact-input" required>
+
+            <label class="muted-small" for="c-email" style="margin-top:10px">Email</label>
+            <input id="c-email" name="email" type="email" placeholder="you@example.com" class="contact-input" required>
+
+            <label class="muted-small" for="c-message" style="margin-top:10px">Message</label>
+            <textarea id="c-message" name="message" rows="5" placeholder="Short summary" class="contact-textarea" required></textarea>
+
+            <div class="contact-actions" style="margin-top:12px">
+              <button id="sendBtn" type="submit" class="btn btn-accent">Send</button>
+              <div id="formStatus" style="color:var(--muted)"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- right: CV & details -->
+      <div class="contact-right">
+        <div class="card">
+          <div style="margin-bottom:8px;font-weight:700">Download CV</div>
+          <div style="color:var(--muted);margin-bottom:12px">Full CV and contact details:</div>
+          <a class="btn btn-ghost" href="Veronise -CV.pdf.pdf" download>Download veronise-cv.pdf</a>
+
+          <div style="margin-top:14px;color:var(--muted)"><strong>Location:</strong> Kigali, Rwanda</div>
+          <div style="margin-top:8px;color:var(--muted)">Prefer email? Open the downloaded CV to view full contact details, or send a short message using the form.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div><strong>NYIRAGASIGWA Veronise</strong> — Front-end development & community projects</div>
+      <div style="color:var(--muted)">© <span id="yr"></span></div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // set year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    (function(){
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('primary-nav');
+      toggle.addEventListener('click', function(){
+        const open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      // close nav on link click (mobile)
+      nav.addEventListener('click', function(e){
+        if(e.target.tagName === 'A' && nav.classList.contains('open')){
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded','false');
+        }
+      });
+    })();
+
+    // Contact form validation + simulated submit
+    (function(){
+      const form = document.getElementById('contactForm');
+      const sendBtn = document.getElementById('sendBtn');
+      const status = document.getElementById('formStatus');
+
+      function setStatus(msg, color){
+        status.textContent = msg;
+        status.style.color = color || 'var(--muted)';
+      }
+
+      function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
+
+        if(!name || !email || !message){
+          setStatus('Please fill all fields.', 'tomato'); return;
+        }
+        if(!validEmail(email)){ setStatus('Enter a valid email.', 'tomato'); return; }
+
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Sending...';
+        setStatus('Sending message...');
+
+        setTimeout(()=>{
+          sendBtn.disabled = false;
+          sendBtn.textContent = 'Send';
+          setStatus('Message sent — thank you!', 'lightgreen');
+          form.reset();
+        }, 900);
+      });
+
+      // clear status on input
+      ['input','textarea'].forEach(evt=>{
+        form.addEventListener(evt, ()=>{ if(status.textContent) setStatus(''); }, {passive:true});
+      });
+    })();
+
+    // BLOG modal behavior: only intercept clicks for internal preview cards (links to http(s) are left alone)
+    (function(){
+      const modal = document.getElementById('postModal');
+      const modalTitle = document.getElementById('postModalTitle');
+      const modalDate = document.getElementById('postModalDate');
+      const modalBody = document.getElementById('postModalContent');
+      const closeBtn = modal.querySelector('.post-modal-close');
+      const panel = modal.querySelector('.post-modal-panel');
+
+      // sample internal posts (if you want to add internal previews later)
+      const posts = {
+        // empty by default — external blog cards open in a new tab
+      };
+
+      function openPost(id, pushHash = true){
+        const post = posts[id];
+        if(!post) return;
+        modalTitle.textContent = post.title || '';
+        modalDate.textContent = post.date || '';
+        modalBody.innerHTML = post.content || '';
+        modal.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        if(pushHash) history.replaceState(null,'','#post-'+id);
+      }
+      function closePost(){
+        modal.setAttribute('aria-hidden','true');
+        modalTitle.textContent = '';
+        modalDate.textContent = '';
+        modalBody.innerHTML = '';
+        document.body.style.overflow = '';
+        history.replaceState(null,'', window.location.pathname + window.location.search);
+      }
+
+      // If any clickable card doesn't have an external href, open modal
+      document.getElementById('blogGrid').addEventListener('click', function(e){
+        const card = e.target.closest('.blog-card-link');
+        if(!card) return;
+        const href = card.getAttribute('href') || '';
+        // if external link (starts with http) or has target="_blank", let it open normally
+        if(href.startsWith('http') || card.target === '_blank') {
+          return;
+        }
+        e.preventDefault();
+        const id = card.getAttribute('data-id');
+        if(id) openPost(id, true);
+      });
+
+      if(closeBtn){
+        closeBtn.addEventListener('click', closePost);
+      }
+      if(modal){
+        modal.addEventListener('click', function(e){
+          if(e.target.matches('[data-close]') || e.target === modal) closePost();
+        });
+        document.addEventListener('keydown', function(e){
+          if(e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closePost();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
+
+
