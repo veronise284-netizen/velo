@@ -378,26 +378,71 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
-  <section id="skills" class="container" aria-label="Skills">
-    <h2>Skills</h2>
+  <!-- SKILLS (single card with 3-column layout inside) -->
+<section id="skills" class="container" aria-label="Skills">
+  <h2>Skills</h2>
 
-    <div class="skills-grid">
-      <div class="skill-card">
+  <div class="skills-card">
+    <div class="skills-grid-card">
+      <div class="skill-col">
         <h3>Web Design</h3>
         <p>Creating visually appealing and modern web layouts that blend creativity with usability. I enjoy working with color palettes, soft gradients, and structured layouts that highlight content clearly.</p>
       </div>
 
-      <div class="skill-card">
+      <div class="skill-col">
         <h3>UI/UX Design</h3>
         <p>Designing digital interfaces that are visually appealing and easy to navigate. I focus on creating clear layouts and intuitive interactions based on user needs.</p>
       </div>
 
-      <div class="skill-card">
+      <div class="skill-col">
         <h3>User Research</h3>
         <p>Gathering insights from real users to understand their needs, frustrations, and expectations. I use interviews, observation and feedback to guide design decisions.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<style>
+/* Single-card Skills styles (paste into your stylesheet area or inside a <style> block) */
+.skills-card {
+  margin-top: 18px;
+  background: rgba(18,18,20,0.45);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+}
+
+.skills-grid-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.skill-col h3 {
+  font-family: "Crimson Pro", serif;
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.skill-col p {
+  margin: 0;
+  color: rgba(255,255,255,0.95);
+  line-height: 1.6;
+  font-size: 15.5px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .skills-grid-card { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .skills-grid-card { grid-template-columns: 1fr; }
+  .skills-card { padding: 18px; }
+}
+</style>
+
   </section>
    </section>
 
