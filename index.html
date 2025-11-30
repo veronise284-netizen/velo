@@ -541,49 +541,64 @@
 
   
   
-  <!-- BLOG SECTION (links open externally) -->
-  <section id="blog" style="padding:60px 30px; max-width:1250px; margin:auto;">
-    <h2 style="font-family:'Crimson Pro', serif; font-size:40px; margin-bottom:10px;">Read My Blog</h2>
+ <!-- BLOG SECTION -->
+<section id="blog" style="padding:60px 30px; max-width:1250px; margin:auto;">
+  <h2 style="font-family:'Crimson Pro', serif; font-size:40px; margin-bottom:10px;">Read My Blog</h2>
 
-    <div id="blogGrid" class="blog-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:28px; margin-top:25px;">
-      <!-- BLOG 1 -->
-      <a class="blog-card-link" href="https://www.figma.com/resource-library/portfolio-website-examples/?fuid=1572526105765990200" target="_blank" rel="noopener noreferrer" style="display:block; background: rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; text-decoration: none; color: white; transition: transform 0.2s ease, background 0.2s ease;">
-        <img src="blog1.png" alt="Portfolio website examples preview" style="width:100%; height:210px; object-fit:cover; border-radius:12px;" loading="lazy">
-        <p style="font-size:14px; color:#c7c7c7; margin-top:12px;">20 November, 2025</p>
-        <h3 style="margin-top:8px; font-size:18px; font-weight:600;">Example of portfolio websites</h3>
-        <p style="margin-top:6px; font-size:15px; opacity:0.85;">15 inspiring portfolio website examples + tips.</p>
-      </a>
+  <div id="blogGrid" class="blog-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:28px; margin-top:25px;">
 
-      <!-- BLOG 2 -->
-      <a class="blog-card-link" href="https://www.youtube.com/watch?v=jQ1sfKIl50E" target="_blank" rel="noopener noreferrer" style="display:block; background: rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; text-decoration: none; color: white; transition: transform 0.2s ease, background 0.2s ease;">
-        <img src="blog2.png.png" alt="Figma tutorial preview" style="width:100%; height:210px; object-fit:cover; border-radius:12px;" loading="lazy">
-        <p style="font-size:14px; color:#c7c7c7; margin-top:12px;">20 November, 2025</p>
-        <h3 style="margin-top:8px; font-size:18px; font-weight:600;">Figma tutorials for beginners</h3>
-        <p style="margin-top:6px; font-size:15px; opacity:0.85;">Figma Tutorial for Beginners.</p>
-      </a>
+    <!-- BLOG 1 -->
+    <article class="blog-card" style="display:block; background: rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; color: white; transition: transform 0.2s ease, background 0.2s ease;">
+      <img src="blog1.png" alt="Portfolio website examples preview" style="width:100%; height:210px; object-fit:cover; border-radius:12px;" loading="lazy">
+      <p style="font-size:14px; color:#c7c7c7; margin-top:12px;">20 November, 2025</p>
+      <h3 style="margin-top:8px; font-size:18px; font-weight:600;">Example of portfolio websites</h3>
+      <p style="margin-top:6px; font-size:15px; opacity:0.85;">15 inspiring portfolio website examples + tips.</p>
 
-      <!-- BLOG 3 -->
-      <a class="blog-card-link" href="https://www.youtube.com/watch?v=1ucLq6JTxac&t=55s" target="_blank" rel="noopener noreferrer" style="display:block; background: rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; text-decoration: none; color: white; transition: transform 0.2s ease, background 0.2s ease;">
-        <img src="blog3.png.png" alt="Prototyping in Figma preview" style="width:100%; height:210px; object-fit:cover; border-radius:12px;" loading="lazy">
-        <p style="font-size:14px; color:#c7c7c7; margin-top:12px;">20 November, 2025</p>
-        <h3 style="margin-top:8px; font-size:18px; font-weight:600;">Prototyping in Figma</h3>
-        <p style="margin-top:6px; font-size:15px; opacity:0.85;">Figma Prototype Tutorial for Beginners.</p>
-      </a>
-    </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:12px">
+        <a class="btn btn-ghost" href="single-post.html?id=blog1" title="Read full post: Example of portfolio websites" style="text-decoration:none">View more →</a>
+      </div>
+    </article>
 
-    <!-- Keep modal available for any internal previews (won't be used for external links) -->
-    <div id="postModal" class="post-modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
-      <div class="post-modal-backdrop" data-close="true"></div>
-      <article class="post-modal-panel" role="document" aria-labelledby="postModalTitle">
-        <button class="post-modal-close" aria-label="Close post">&times;</button>
-        <header class="post-modal-header">
-          <h1 id="postModalTitle"></h1>
-          <div class="post-meta" id="postModalDate" style="color:#666;margin-bottom:12px;"></div>
-        </header>
-        <div id="postModalContent" class="post-modal-body" style="color:#222;line-height:1.6;"></div>
-      </article>
-    </div>
-  </section>
+    <!-- BLOG 2 -->
+    <article class="blog-card" style="display:block; background: rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; color: white; transition: transform 0.2s ease, background 0.2s ease;">
+      <img src="blog2.png.png" alt="Figma tutorial preview" style="width:100%; height:210px; object-fit:cover; border-radius:12px;" loading="lazy">
+      <p style="font-size:14px; color:#c7c7c7; margin-top:12px;">20 November, 2025</p>
+      <h3 style="margin-top:8px; font-size:18px; font-weight:600;">Figma tutorials for beginners</h3>
+      <p style="margin-top:6px; font-size:15px; opacity:0.85;">Figma Tutorial for Beginners.</p>
+
+      <div style="display:flex;justify-content:flex-end;margin-top:12px">
+        <a class="btn btn-ghost" href="single-post.html?id=blog2" title="Read full post: Figma tutorials for beginners" style="text-decoration:none">View more →</a>
+      </div>
+    </article>
+
+    <!-- BLOG 3 -->
+    <article class="blog-card" style="display:block; background: rgba(255,255,255,0.05); padding: 18px; border-radius: 16px; color: white; transition: transform 0.2s ease, background 0.2s ease;">
+      <img src="blog3.png.png" alt="Prototyping in Figma preview" style="width:100%; height:210px; object-fit:cover; border-radius:12px;" loading="lazy">
+      <p style="font-size:14px; color:#c7c7c7; margin-top:12px;">20 November, 2025</p>
+      <h3 style="margin-top:8px; font-size:18px; font-weight:600;">Prototyping in Figma</h3>
+      <p style="margin-top:6px; font-size:15px; opacity:0.85;">Figma Prototype Tutorial for Beginners.</p>
+
+      <div style="display:flex;justify-content:flex-end;margin-top:12px">
+        <a class="btn btn-ghost" href="single-post.html?id=blog3" title="Read full post: Prototyping in Figma" style="text-decoration:none">View more →</a>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Keep modal available for any internal previews (won't be used for these internal links) -->
+  <div id="postModal" class="post-modal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+    <div class="post-modal-backdrop" data-close="true"></div>
+    <article class="post-modal-panel" role="document" aria-labelledby="postModalTitle">
+      <button class="post-modal-close" aria-label="Close post">&times;</button>
+      <header class="post-modal-header">
+        <h1 id="postModalTitle"></h1>
+        <div class="post-meta" id="postModalDate" style="color:#666;margin-bottom:12px;"></div>
+      </header>
+      <div id="postModalContent" class="post-modal-body" style="color:#222;line-height:1.6;"></div>
+    </article>
+  </div>
+</section>
+
 
   <!-- CONTACT -->
   <section id="contact" class="container" aria-label="Contact">
@@ -612,6 +627,8 @@
           </form>
         </div>
       </div>
+
+
 
       <!-- right: CV & details -->
       <div class="contact-right">

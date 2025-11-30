@@ -125,6 +125,7 @@
     <div class="layout">
       <main>
         <article id="post-content" aria-live="polite">
+          <!-- default content shown if JS doesn't overwrite -->
           <p>Hello — I’m <strong>NYIRAGASIGWA Veronise</strong>. I study law at the University of Kigali and I build simple, useful websites and designs in my free time. I made this portfolio to show the work I care about and to keep learning by doing.</p>
 
           <h2>Why I made this portfolio</h2>
@@ -258,49 +259,69 @@
   </div>
 
   <script>
-    // set year
-    document.getElementById('yr').textContent = new Date().getFullYear();
+(function(){
+  // Read `id` from ?id=... OR from hash (#blog1) as a fallback
+  const params = new URLSearchParams(location.search);
+  let id = params.get('id');
 
-    // progress bar
-    document.addEventListener('scroll', () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
-      document.getElementById('progress').style.width = pct + '%';
-    });
+  if(!id && location.hash){
+    // accept #blog1 or #blog1-foo
+    id = location.hash.replace(/^#/, '');
+  }
 
-    // share button (native if available)
-    document.getElementById('shareBtn').addEventListener('click', () => {
-      const url = location.href;
-      const title = document.getElementById('post-title').innerText;
-      if(navigator.share){
-        navigator.share({title, text: title, url});
-      } else {
-        prompt('Copy link', url);
-      }
-    });
+  console.log('[single-post] location.search=', location.search, ' location.hash=', location.hash, ' resolved id=', id);
 
-    // comments demo
-    function addComment(){
-      const textEl = document.getElementById('commentText');
-      const nameEl = document.getElementById('commentName');
-      const text = textEl.value.trim();
-      const name = nameEl.value.trim() || 'Anonymous';
-      if(!text) { alert('Write a comment first'); return; }
-
-      const container = document.getElementById('commentsList');
-      const div = document.createElement('div');
-      div.style.padding = '10px';
-      div.style.borderRadius = '8px';
-      div.style.background = 'rgba(255,255,255,0.02)';
-      div.style.border = '1px solid rgba(255,255,255,0.03)';
-      div.style.marginBottom = '8px';
-      div.innerHTML = `<strong style="color:#fff">${escapeHtml(name)}</strong> <div style="color:var(--muted);font-size:13px">— just now</div><p style="margin-top:8px;color:var(--muted)">${escapeHtml(text)}</p>`;
-      container.prepend(div);
-      textEl.value = ''; nameEl.value = '';
+  // posts data (edit as needed)
+  const posts = {
+    blog1: {
+      title: "Example of portfolio websites",
+      date: "20 November, 2025",
+      img: "blog1.png",
+      content: `<p>Content for blog1...</p>`,
+      tags: ["Portfolio","Inspiration"]
+    },
+    blog2: {
+      title: "Figma tutorials for beginners",
+      date: "20 November, 2025",
+      img: "blog2.png.png",
+      content: `<p>Content for blog2...</p>`,
+      tags: ["Figma","Tutorial"]
+    },
+    blog3: {
+      title: "Prototyping in Figma",
+      date: "20 November, 2025",
+      img: "blog3.png.png",
+      content: `<p>Content for blog3...</p>`,
+      tags: ["Figma","Prototyping"]
     }
+  };
 
-    // small helper
-    function escapeHtml(s){ return String(s).replace(/[&<>"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m])); }
-  </script>
-</body>
-</html>
+  function showNotFound(){
+    document.getElementById('post-title').textContent = 'Post not found';
+    document.getElementById('post-date').textContent = '';
+    document.getElementById('post-hero-img').src = 'profile2.jpg.png';
+    document.getElementById('post-content').innerHTML = '<p>Sorry — that post does not exist.</p>';
+    document.getElementById('post-tags').innerHTML = '';
+  }
+
+  if(!id){
+    console.warn('[single-post] No id found in URL.');
+    showNotFound();
+    return;
+  }
+
+  const post = posts[id];
+  if(!post){
+    console.warn('[single-post] No post matches id:', id);
+    showNotFound();
+    return;
+  }
+
+  // Populate page
+  document.getElementById('post-title').textContent = post.title;
+  document.getElementById('post-date').textContent = post.date;
+  document.getElementById('post-hero-img').src = post.img;
+  document.getElementById('post-content').innerHTML = post.content;
+  document.getElementById('post-tags').innerHTML = (post.tags || []).map(t => `<span class="tag">${t}</span>`).join(' ');
+})();
+</script>
