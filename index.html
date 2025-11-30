@@ -34,7 +34,13 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
+
+      /* Prevent any horizontal scroll caused by overflowing elements */
+      overflow-x: hidden;
     }
+
+    /* Make media responsive and avoid accidental overflow */
+    img, video, svg { max-width:100%; height:auto; display:block }
 
     /* FULL-PAGE BACKGROUND */
     body::before{
@@ -399,9 +405,6 @@
       </div>
     </div>
   </section>
-   </section>
-
-   
 
   <!-- PROJECTS -->
   <section id="projects" class="container" aria-label="Projects">
@@ -483,6 +486,7 @@
       </div>
 
     </div>
+  </section>
 
   <!-- TECHNOLOGIES USED (single card with 3-column grid inside) -->
   <section class="container tech-section" id="technologies">
@@ -536,7 +540,7 @@
   </section>
 
   
- 
+  
   <!-- BLOG SECTION (links open externally) -->
   <section id="blog" style="padding:60px 30px; max-width:1250px; margin:auto;">
     <h2 style="font-family:'Crimson Pro', serif; font-size:40px; margin-bottom:10px;">Read My Blog</h2>
@@ -757,5 +761,3 @@
   </script>
 </body>
 </html>
-
-
