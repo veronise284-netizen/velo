@@ -612,20 +612,24 @@
 
           <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
   <input type="hidden" name="form-name" value="contact">
-            <label class="muted-small" for="c-name">Name</label>
-            <input id="c-name" name="name" type="text" placeholder="Your name" class="contact-input" required>
 
-            <label class="muted-small" for="c-email" style="margin-top:10px">Email</label>
-            <input id="c-email" name="email" type="email" placeholder="you@example.com" class="contact-input" required>
+  <label class="muted-small" for="c-name">Name</label>
+  <input id="c-name" name="name" type="text" placeholder="Your name" class="contact-input" required>
 
-            <label class="muted-small" for="c-message" style="margin-top:10px">Message</label>
-            <textarea id="c-message" name="message" rows="5" placeholder="Short summary" class="contact-textarea" required></textarea>
+  <label class="muted-small" for="c-email" style="margin-top:10px">Email</label>
+  <input id="c-email" name="email" type="email" placeholder="you@example.com" class="contact-input" required>
 
-            <div class="contact-actions" style="margin-top:12px">
-              <button id="sendBtn" type="submit" class="btn btn-accent">Send</button>
-              <div id="formStatus" style="color:var(--muted)"></div>
-            </div>
-          </form>
+  <label class="muted-small" for="c-message" style="margin-top:10px">Message</label>
+  <textarea id="c-message" name="message" rows="5" placeholder="Short summary" class="contact-textarea" required></textarea>
+
+  <!-- reCAPTCHA box appears here -->
+  <div data-netlify-recaptcha="true" style="margin-top:15px"></div>
+
+  <div class="contact-actions" style="margin-top:12px">
+    <button id="sendBtn" type="submit" class="btn btn-accent">Send</button>
+    <div id="formStatus" style="color:var(--muted)"></div>
+  </div>
+</form>
         </div>
       </div>
 
