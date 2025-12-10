@@ -126,7 +126,7 @@
       <main>
         <article id="post-content" aria-live="polite">
           <!-- default content shown if JS doesn't overwrite -->
-          <p>Hello — I’m <strong>NYIRAGASIGWA Veronise</strong>. I study law at the University of Kigali and I build simple, useful websites and designs in my free time. I made this portfolio to show the work I care about and to keep learning by doing.</p>
+          <p>Hello — I’m <strong>NYIRAGASIGWA Veronise</strong>. I build simple, useful websites and designs in my free time. I made this portfolio to show the work I care about and to keep learning by doing.</p>
 
           <h2>Why I made this portfolio</h2>
           <p>At first I wanted a place where people can see my projects and understand what I can do. My portfolio is not only for employers — it is a record of my learning. When I finish a project, I add it here so I can remember how I solved the problem and get better next time.</p>
@@ -259,27 +259,56 @@
   </div>
 
   <script>
-(function(){
-  // Read `id` from ?id=... OR from hash (#blog1) as a fallback
+script>
+
+function()
+
+  // Read id from URL (?id=blog1)
   const params = new URLSearchParams(location.search);
   let id = params.get('id');
 
   if(!id && location.hash){
-    // accept #blog1 or #blog1-foo
     id = location.hash.replace(/^#/, '');
   }
 
-  console.log('[single-post] location.search=', location.search, ' location.hash=', location.hash, ' resolved id=', id);
-
-  // posts data (edit as needed)
+  // POSTS DATA
   const posts = {
     blog1: {
-      title: "Example of portfolio websites",
+      title: "15 inspiring portfolio website examples + tips",
       date: "20 November, 2025",
       img: "blog1.png",
-      content: `<p>Content for blog1...</p>`,
+      content: `
+      <h2>15 inspiring portfolio website examples + tips</h2>
+
+      <p>A portfolio website turns your work into a compelling visual story...</p>
+
+      <p>In this guide, explore:</p>
+      <ul>
+        <li>What a portfolio website is</li>
+        <li>Inspiring examples</li>
+        <li>Tips to design yours</li>
+      </ul>
+
+      <h3>What is a portfolio?</h3>
+      <p>It’s more than a digital resume. It communicates your skills creatively...</p>
+
+      <h2>Portfolio Website Examples</h2>
+      <p>(All examples here...)</p>
+
+      <h2>Tips for building your portfolio</h2>
+      <ul>
+        <li>Show best work first</li>
+        <li>Explain impact</li>
+        <li>Make it personal</li>
+        <li>Update often</li>
+      </ul>
+
+      <h3>Start building your portfolio</h3>
+      <p>Your portfolio tells your story. Start small, grow with time.</p>
+      `,
       tags: ["Portfolio","Inspiration"]
     },
+
     blog2: {
       title: "Figma tutorials for beginners",
       date: "20 November, 2025",
@@ -287,6 +316,7 @@
       content: `<p>Content for blog2...</p>`,
       tags: ["Figma","Tutorial"]
     },
+
     blog3: {
       title: "Prototyping in Figma",
       date: "20 November, 2025",
@@ -296,7 +326,8 @@
     }
   };
 
-  function showNotFound(){
+  // NOT FOUND HANDLER
+  function showNotFound() {
     document.getElementById('post-title').textContent = 'Post not found';
     document.getElementById('post-date').textContent = '';
     document.getElementById('post-hero-img').src = 'profile2.jpg.png';
@@ -304,15 +335,9 @@
     document.getElementById('post-tags').innerHTML = '';
   }
 
-  if(!id){
-    console.warn('[single-post] No id found in URL.');
-    showNotFound();
-    return;
-  }
-
+  // Check for valid post id
   const post = posts[id];
   if(!post){
-    console.warn('[single-post] No post matches id:', id);
     showNotFound();
     return;
   }
@@ -322,6 +347,7 @@
   document.getElementById('post-date').textContent = post.date;
   document.getElementById('post-hero-img').src = post.img;
   document.getElementById('post-content').innerHTML = post.content;
-  document.getElementById('post-tags').innerHTML = (post.tags || []).map(t => `<span class="tag">${t}</span>`).join(' ');
-})();
+  document.getElementById('post-tags').innerHTML = (post.tags || [])
+    .map(t => `<span class="tag">${t}</span>`).join(' ');
+
 </script>
